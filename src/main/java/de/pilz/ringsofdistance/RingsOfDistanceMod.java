@@ -10,7 +10,11 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid = "ringsofdistance", version = Tags.VERSION, name = "Rings of distance", acceptedMinecraftVersions = "[1.7.10]")
+@Mod(
+    modid = "ringsofdistance",
+    version = Tags.VERSION,
+    name = "Rings of distance",
+    acceptedMinecraftVersions = "[1.7.10]")
 public class RingsOfDistanceMod {
 
     public static final String MODID = "ringsofdistance";

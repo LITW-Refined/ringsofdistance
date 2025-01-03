@@ -1,12 +1,13 @@
 package de.pilz.ringsofdistance;
 
+import net.minecraftforge.common.MinecraftForge;
+
 import baubles.api.expanded.BaubleExpandedSlots;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.common.MinecraftForge;
 
 public class CommonProxy {
 
@@ -30,7 +31,9 @@ public class CommonProxy {
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)
     public void init(FMLInitializationEvent event) {
         // Initialize controller
-        FMLCommonHandler.instance().bus().register(controller);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(controller);
         MinecraftForge.EVENT_BUS.register(controller);
 
         // Register recipes

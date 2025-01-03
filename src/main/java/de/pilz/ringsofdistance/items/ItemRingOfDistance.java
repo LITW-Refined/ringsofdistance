@@ -2,19 +2,24 @@ package de.pilz.ringsofdistance.items;
 
 import java.util.List;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+
 import baubles.api.BaubleType;
 import baubles.api.expanded.BaubleExpandedSlots;
 import baubles.api.expanded.IBaubleExpanded;
+import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import de.pilz.ringsofdistance.RingsOfDistanceMod;
 import de.pilz.ringsofdistance.enums.ItemRingOfDistanceVariants;
 import de.pilz.ringsofdistance.strings.ItemNames;
 import de.pilz.ringsofdistance.strings.OtherStrings;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 
 public class ItemRingOfDistance extends Item implements IBaubleExpanded {
 
@@ -22,6 +27,7 @@ public class ItemRingOfDistance extends Item implements IBaubleExpanded {
 
     public ItemRingOfDistance() {
         this.setMaxDamage(0);
+        this.setUnlocalizedName(ItemNames.RINGOFDISTANCE);
         this.hasSubtypes = true;
     }
 
@@ -30,10 +36,21 @@ public class ItemRingOfDistance extends Item implements IBaubleExpanded {
         return meta;
     }
 
-    @Override
-    public String getUnlocalizedName(ItemStack stack) {
-        var variation = ItemRingOfDistanceVariants.values()[stack.getItemDamage()];
-        return OtherStrings.ITEM_PREFIX + ItemNames.RINGOFDISTANCE + "." + variation.getName();
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> lines, boolean shiftPressed) {
+        ItemRingOfDistanceVariants variant = RingsOfDistanceMod.proxy.controller.getRingVariant(stack);
+        if (variant != null) {
+            lines.add(
+                String.format(
+                    LanguageRegistry.instance()
+                        .getStringLocalization(getUnlocalizedName() + ".hint.1"),
+                    variant.getLevel()));
+            lines.add(
+                String.format(
+                    LanguageRegistry.instance()
+                        .getStringLocalization(getUnlocalizedName() + ".hint.2"),
+                    variant.getModification()));
+        }
     }
 
     @Override
@@ -49,7 +66,8 @@ public class ItemRingOfDistance extends Item implements IBaubleExpanded {
         myIcons = new IIcon[ItemRingOfDistanceVariants.values().length];
 
         for (ItemRingOfDistanceVariants variation : ItemRingOfDistanceVariants.values()) {
-            myIcons[variation.getMeta()] = reg.registerIcon(OtherStrings.MOD_PREFIX + ItemNames.RINGOFDISTANCE + "_" + variation.getName());
+            myIcons[variation.getMeta()] = reg
+                .registerIcon(OtherStrings.MOD_PREFIX + ItemNames.RINGOFDISTANCE + "_" + variation.getName());
         }
     }
 

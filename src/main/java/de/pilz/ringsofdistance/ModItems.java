@@ -1,9 +1,10 @@
 package de.pilz.ringsofdistance;
 
+import net.minecraft.item.Item;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import de.pilz.ringsofdistance.items.ItemRingOfDistance;
 import de.pilz.ringsofdistance.strings.ItemNames;
-import net.minecraft.item.Item;
 
 public class ModItems {
 

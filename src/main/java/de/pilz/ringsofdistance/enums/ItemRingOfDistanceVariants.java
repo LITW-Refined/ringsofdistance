@@ -1,24 +1,27 @@
 package de.pilz.ringsofdistance.enums;
 
 public enum ItemRingOfDistanceVariants {
-    
-    LEVEL_1(0, 1.0D, "level1"),
-    LEVEL_2(1, 3.0D, "level2"),
-    LEVEL_3(2, 5.0D, "level3"),
-    ;
+
+    LEVEL_1(0, 1, 1.0D),
+    LEVEL_2(1, 2, 3.0D),
+    LEVEL_3(2, 3, 5.0D),;
 
     private final int meta;
+    private final int level;
     private final double modification;
-    private final String name;
-    
-    private ItemRingOfDistanceVariants(int meta, double modification, String name) {
+
+    private ItemRingOfDistanceVariants(int meta, int level, double modification) {
         this.meta = meta;
+        this.level = level;
         this.modification = modification;
-        this.name = name;
     }
 
     public int getMeta() {
         return meta;
+    }
+
+    public int getLevel() {
+        return level;
     }
 
     public double getModification() {
@@ -26,6 +29,6 @@ public enum ItemRingOfDistanceVariants {
     }
 
     public String getName() {
-        return name;
+        return "level" + level;
     }
 }
