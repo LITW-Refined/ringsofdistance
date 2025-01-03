@@ -90,7 +90,7 @@ public class RingsOfDistanceController {
             return;
         }
 
-        if (player instanceof EntityPlayerMP && itemStack.getItem() instanceof ItemRingOfDistance) {
+        if (player instanceof EntityPlayerMP) {
             ItemInWorldManager itemInWorldManager = ((EntityPlayerMP) player).theItemInWorldManager;
             double distance = itemInWorldManager.getBlockReachDistance();
             double modification;
