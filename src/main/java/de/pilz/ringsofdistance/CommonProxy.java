@@ -6,9 +6,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
-import de.pilz.ringsofdistance.items.ItemRingOfDistance;
-import de.pilz.ringsofdistance.strings.ItemNames;
 import net.minecraftforge.common.MinecraftForge;
 
 public class CommonProxy {
@@ -24,7 +21,7 @@ public class CommonProxy {
         Config.initialize();
 
         // Register items
-        GameRegistry.registerItem(new ItemRingOfDistance(), ItemNames.RINGOFDISTANCE);
+        ModItems.registerItems();
 
         // Register Bauble slot
         BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.ringType, 3);
@@ -35,6 +32,9 @@ public class CommonProxy {
         // Initialize controller
         FMLCommonHandler.instance().bus().register(controller);
         MinecraftForge.EVENT_BUS.register(controller);
+
+        // Register recipes
+        ModRecipes.registerRecipes();
     }
 
     // postInit "Handle interaction with other mods, complete your setup based on this." (Remove if not needed)
