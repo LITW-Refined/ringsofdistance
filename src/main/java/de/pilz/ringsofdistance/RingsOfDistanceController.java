@@ -32,9 +32,9 @@ public class RingsOfDistanceController {
         processEquippedChange(event.player, true);
     }
 
-    private int[] getAmuletSlotIds() {
+    private int[] getRingSlotIds() {
         if (amuletSlotIds == null) {
-            amuletSlotIds = BaubleExpandedSlots.getIndexesOfAssignedSlotsOfType(BaubleExpandedSlots.amuletType);
+            amuletSlotIds = BaubleExpandedSlots.getIndexesOfAssignedSlotsOfType(BaubleExpandedSlots.ringType);
         }
         return amuletSlotIds;
     }
@@ -44,12 +44,12 @@ public class RingsOfDistanceController {
             return null;
         }
 
-        int[] amuletSlotIds = getAmuletSlotIds();
-        for (int slotIndex : amuletSlotIds) {
-            ItemStack amulet = BaublesApi.getBaubles((EntityPlayer) entity)
+        int[] ringSlotIds = getRingSlotIds();
+        for (int slotIndex : ringSlotIds) {
+            ItemStack ring = BaublesApi.getBaubles((EntityPlayer) entity)
                 .getStackInSlot(slotIndex);
-            if (amulet != null && amulet.getItem() instanceof ItemRingOfDistance) {
-                return amulet;
+            if (ring != null && ring.getItem() instanceof ItemRingOfDistance) {
+                return ring;
             }
         }
 
