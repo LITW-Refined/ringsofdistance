@@ -106,7 +106,7 @@ public class ItemRingOfDistance extends Item implements IBaubleExpanded {
 
     @Override
     public void onWornTick(ItemStack itemStack, EntityLivingBase player) {
-        // Nothing todo here
+        RingsOfDistanceMod.proxy.controller.processEquippedChange(itemStack, player, false);
     }
 
     @Override
