@@ -25,7 +25,7 @@ public class CommonProxy {
         ModItems.registerItems();
 
         // Register Bauble slot
-        BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.ringType, 3);
+        BaubleExpandedSlots.tryAssignSlotOfType(BaubleExpandedSlots.ringType);
     }
 
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)
