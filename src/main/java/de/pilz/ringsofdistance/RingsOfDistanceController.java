@@ -20,8 +20,6 @@ public class RingsOfDistanceController {
 
     public HashMap<EntityPlayerMP, Double> moddedPlayers = new HashMap<EntityPlayerMP, Double>();
 
-    public int[] amuletSlotIds;
-
     @SubscribeEvent
     public void onPlayerLogin(PlayerLoggedInEvent event) {
         processEquippedChange(event.player, false);
@@ -32,19 +30,12 @@ public class RingsOfDistanceController {
         processEquippedChange(event.player, true);
     }
 
-    private int[] getRingSlotIds() {
-        if (amuletSlotIds == null) {
-            amuletSlotIds = BaubleExpandedSlots.getIndexesOfAssignedSlotsOfType(BaubleExpandedSlots.ringType);
-        }
-        return amuletSlotIds;
-    }
-
     public ItemStack getRingFromBaubles(EntityLivingBase entity) {
         if (!(entity instanceof EntityPlayer)) {
             return null;
         }
 
-        int[] ringSlotIds = getRingSlotIds();
+        int[] ringSlotIds = BaubleExpandedSlots.getIndexesOfAssignedSlotsOfType(BaubleExpandedSlots.ringType);
         for (int slotIndex : ringSlotIds) {
             ItemStack ring = BaublesApi.getBaubles((EntityPlayer) entity)
                 .getStackInSlot(slotIndex);
